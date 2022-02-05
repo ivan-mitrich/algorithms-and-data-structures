@@ -27,13 +27,16 @@ citer int_binary_search_iterator(const vec& v, int val)
 void int_selection_descending_sort(vec& v) {
 	sz min_index = 0;
 	for (sz i = 0; i < v.size(); ++i) {
-		min_index = i + 1;
-		auto elem = v[min_index];
-		for (sz j = min_index; j < v.size(); ++j) {
+		min_index = i;
+		auto elem = v[i];
+		for (sz j = i+1; j < v.size(); ++j) {
 			if (elem < v[j])
+			{
 				min_index = j;
+				elem = v[j];
+			}
 		}
-		std::swap(v[i + 1], v[min_index]);
+		std::swap(v[i], v[min_index]);
 	}
 }
 
