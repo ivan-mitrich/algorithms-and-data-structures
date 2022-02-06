@@ -18,5 +18,8 @@ int main() {
 	std::vector<int> unsorted_v = { 9, 5, 3, 4, 7, 2, 1, 8, 6, 0};
 	int_selection_descending_sort(unsorted_v);
 	print_container(unsorted_v.begin(), unsorted_v.end());
+
+	//recursive sum
+	std::cout << recursive_int_vector_sum(v.begin(), v.end()) << std::endl;
 	return 0;
 }
