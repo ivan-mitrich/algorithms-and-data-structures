@@ -11,13 +11,13 @@ class SinglyLinkedList
 {
 public:
 	SinglyLinkedList() : size_(0), head(nullptr) { }
-	UnidirectionalLink* insert(UnidirectionalLink* link);
+	UnidirectionalLink* insert(int n, int v);
 	UnidirectionalLink* push_back(int v);
-	UnidirectionalLink* advance(int n);
+	UnidirectionalLink* advance(int n) const;
 	UnidirectionalLink* erase(int v);
-	UnidirectionalLink* find(int v);
-	UnidirectionalLink* tail();
-	size_t size() { return size_; }
+	UnidirectionalLink* find(int v) const;
+	UnidirectionalLink* tail() const;
+	size_t size() const { return size_; }
 private:
 	size_t size_;
 	UnidirectionalLink* head;

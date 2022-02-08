@@ -1,8 +1,15 @@
 #include "SinglyLinkedList.h"
 
-UnidirectionalLink* SinglyLinkedList::insert(UnidirectionalLink* link)
+UnidirectionalLink* SinglyLinkedList::insert(int n, int v)
 {
-    return nullptr;
+    auto item = advance(n);
+    UnidirectionalLink* newItem = nullptr;
+    if (item != nullptr)
+    {
+        newItem = new UnidirectionalLink(v, item->next);
+        item->next = newItem;
+    }
+    return newItem;
 }
 
 UnidirectionalLink* SinglyLinkedList::push_back(int v)
@@ -18,10 +25,10 @@ UnidirectionalLink* SinglyLinkedList::push_back(int v)
     return newItem;
 }
 
-UnidirectionalLink* SinglyLinkedList::advance(int n)
+UnidirectionalLink* SinglyLinkedList::advance(int n) const
 {
     UnidirectionalLink* currentItem = head;
-    while (n-- > 0)
+    while (n-- > 0 && currentItem != nullptr)
         currentItem = currentItem->next;
     return currentItem;
 }
@@ -33,14 +40,17 @@ UnidirectionalLink* SinglyLinkedList::erase(int v)
         UnidirectionalLink* currentItem = head;
         while (currentItem->next != nullptr && currentItem->next->value != v)
             currentItem = currentItem->next;
-        auto erasingItem = currentItem->next;
-        currentItem->next = erasingItem->next;
-        delete erasingItem;
+        if (currentItem->next != nullptr)
+        {
+            auto erasingItem = currentItem->next;
+            currentItem->next = erasingItem->next;
+            --size_;
+        }
     }
     return nullptr;
 }
 
-UnidirectionalLink* SinglyLinkedList::find(int v)
+UnidirectionalLink* SinglyLinkedList::find(int v) const
 {
     UnidirectionalLink* currentItem = head;
     if (head)
@@ -51,7 +61,7 @@ UnidirectionalLink* SinglyLinkedList::find(int v)
     return currentItem;
 }
 
-UnidirectionalLink* SinglyLinkedList::tail()
+UnidirectionalLink* SinglyLinkedList::tail() const
 {
-    return advance(size_);
+    return advance(size_-1);
 }
